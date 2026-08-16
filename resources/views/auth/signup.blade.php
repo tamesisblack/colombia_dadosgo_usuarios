@@ -1,0 +1,800 @@
+@include('auth.default')
+<?php
+    $filepath = public_path('countriesdata.json');
+    $countries = file_get_contents($filepath);
+    $countries = json_decode($countries);
+    $countries = (array) $countries;
+    $newcountries = array();
+    $newcountriesjs = array();
+    foreach ($countries as $keycountry => $valuecountry) {
+        $newcountries[$valuecountry->phoneCode] = $valuecountry;
+        $newcountriesjs[$valuecountry->phoneCode] = $valuecountry->code;
+    }
+?>
+<link href="{{ asset('vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet">
+<link href="{{ asset('/css/font-awesome.min.css')}}" rel="stylesheet">
+<div class="siddhi-signup login-page vh-100">
+    <div class="d-flex align-items-center justify-content-center py-3">
+        <div class="col-md-6">
+            <div class="col-10 mx-auto card p-3">
+                <h3 class="text-dark my-0 mb-3">{{trans('lang.sign_up_with_us')}}</h3>
+                <p class="text-50">{{trans('lang.sign_up_to_continue')}}</p>
+                <div class="error" style="color: red" id="field_error"></div>
+                <div class="error" id="field_error1" style="color:red;display:none;"></div>
+                <form class="mt-3 mb-4" action="javascript:void(0)" onsubmit="return signupClick()">
+                    <div class="form-group" id="firstName_div">
+                        <label for="firstName" class="text-dark">{{trans('lang.first_name')}}</label>
+                        <input type="text" placeholder="Enter FirstName" class="form-control" id="firstName" oninput="validateFName(this)"  required>
+                        <input type="hidden" id="hidden_fName" />
+                    </div>
+                    <div class="form-group" id="lastName_div">
+                        <label for="lastName" class="text-dark">{{trans('lang.last_name')}}</label>
+                        <input type="text" placeholder="Enter LastName" class="form-control" id="lastName" oninput="validateLName(this)" required>
+                        <input type="hidden" id="hidden_lName" />
+                    </div>
+                    <div class="form-group" id="email_div">
+                        <label for="email" class="text-dark">{{trans('lang.email_address')}}</label>
+                        <input type="email" placeholder="Enter Email Address" class="form-control" id="email" required
+                            autocomplete="new-password" >
+                        <input type="hidden" id="hidden_email" />
+                    </div>
+                    <div class="form-group" id="phone-box">
+                        <div class="col-xs-12">                           
+                            <select name="country" id="country_selector" class="country_code" >
+                                @foreach($countries as $country)
+                                <option phoneCode="{{ $country->phoneCode }}" value="{{ $country->code }}"  >
+                                    +{{ $country->phoneCode }} {{ $country->countryName }}</option>
+                                @endforeach
+                            </select>
+                            <input class="form-control" placeholder="{{trans('lang.user_phone')}}" id="mobileNumber"
+                                type="number" name="mobileNumber" value="{{ old('mobileNumber') }}" required
+                                autocomplete="mobileNumber">
+                                <input type="hidden" id="hidden_countrycode" />
+                                <input type="hidden" id="hidden_phone" />
+                                <input type="hidden" id="hidden_isocode" />
+                        </div>
+                        @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group" id="pass_div">
+                        <label for="password" class="text-dark">{{trans('lang.password')}}</label>
+                        <input type="password" placeholder="Enter Password" class="form-control" id="password"
+                            minlength="8" required autocomplete="new-password">
+                    </div>
+                    <div class="form-group" id="referral_div">
+                        <label for="referral_code" class="text-dark">{{trans('lang.referral_code')}}
+                            ({{trans('lang.optional')}})</label>
+                        <input type="text" placeholder="Enter Referral Code" class="form-control" id="referral_code">
+                        <input type="hidden" id="hidden_referral" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="email_valid" id="email_valid" value="1">
+                    </div>
+                    <div class="form-group " id="otp-box" style="display:none;">
+                        <input class="form-control" placeholder="{{trans('lang.otp')}}" id="verificationcode"
+                            type="text" class="form-control" name="otp" value="{{ old('otp') }}" autocomplete="otp">
+                        <div class="otp_error">
+                        </div>
+                    </div>
+                    <div id="recaptcha-container" style="display:none;"></div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block btn-sign-up" id="btn-sign-up">
+                        {{trans('lang.sign_up')}}
+                    </button>
+                    <button type="button" style="display:none;" onclick="applicationVerifier()" id="verify_btn"
+                        class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light btn btn-primary">{{trans('lang.otp_verify')}}
+                    </button>
+                      <button type="button" class="btn btn-primary btn-lg btn-block btn-sign-up" onclick="sendOTP()"
+                        id="send-code" style="display:none">
+                        {{trans('lang.otp_send')}}
+                    </button>
+                </form>
+                <div class="or-line mb-4">
+                    <span>OR</span>
+                </div>
+                <div class="new-acc d-flex align-items-center justify-content-center">
+                    <a href="#" class="btn btn-primary" id="btn-signup-phone" onclick="signupWithPhone()">
+                        <i class="fa fa-phone"> </i> {{trans('lang.sinup_with_phone')}}
+                    </a>
+                </div>
+                <div class="new-acc d-flex align-items-center justify-content-center">
+                    <a href="#" class="btn btn-primary" id="btn-signup-email" onclick="signupWithEmail()"
+                        style="display:none">
+                        <i class="fa fa-envelope"> </i> {{trans('lang.signup_with_email')}}
+                    </a>
+                </div>
+            </div>
+            <div class="new-acc d-flex align-items-center justify-content-center mt-4 mb-3">
+                <a href="{{url('login')}}">
+                    <p class="text-center m-0"> {{trans('lang.already_an_account')}} {{trans('lang.sign_in')}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php if (isset($_COOKIE['section_color'])) { ?>
+<style type="text/css">
+    a,
+    .list-card a:hover,
+    a:hover {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .hc-offcanvas-nav h2,
+    .hc-offcanvas-nav:not(.touch-device) li:not(.custom-content) a:hover,
+    .cat-item a.cat-link:hover {
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .homebanner-content .ban-btn a,
+    .open-ticket-btn a,
+    .select-sec-btn a {
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .homebanner-content .ban-btn a:hover,
+    .open-ticket-btn a:hover,
+    .select-sec-btn a:hover {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .header-main .takeaway-div input[type="checkbox"]::before {
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        opacity: 0.6;
+    }
+
+    .header-main .takeaway-div input[type="checkbox"]:checked::before {
+        opacity: 1;
+    }
+
+    .list-card .member-plan .badge.open,
+    .rest-basic-detail .feather_icon .fu-status a.rest-right-btn>span.open,
+    .header-main .takeaway-div input[type="checkbox"]:checked::before {
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .offer_coupon_code .offer_code p.badge,
+    .offer_coupon_code .offer_price {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .cat-item a.cat-link:hover i.fa {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .rest-basic-detail .feather_icon a.rest-right-btn,
+    .rest-basic-detail .feather_icon a.btn {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .rest-basic-detail .feather_icon a.rest-right-btn .feather-star,
+    .rest-basic-detail .feather_icon a.btn,
+    .rest-basic-detail .feather_icon a.rest-right-btn:hover,
+    ul.rating {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .vendor-detail-left h4.h6::after,
+    .sidebar-header h3.h6::after {
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .gold-members .add-btn .menu-itembtn a.btn {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .btn-primary,
+    .transactions-list .media-body .app-off-btn a {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:not(:disabled):not(.disabled).active,
+    .btn-primary:not(:disabled):not(.disabled):active,
+    .show>.btn-primary.dropdown-toggle,
+    .btn-primary.focus,
+    .btn-primary:focus,
+    .custom-control-input:checked~.custom-control-label::before,
+    .row.fu-loadmore-btn .page-link {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .count-number-box .count-number .count-number-input,
+    .count-number .count-number-input,
+    .count-number-box .count-number button.count-number-input-cart:hover,
+    .count-number button.btn-sm.btn:hover,
+    .btn-link {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .transactions-banner {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .transactions-list .media-body .app-off-btn a:hover,
+    .rating-stars .feather-star.star_active,
+    .rating-stars .feather-star.text-warning {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .search .nav-tabs .nav-item.show .nav-link,
+    .search .nav-tabs .nav-link.active {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+        background-color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .text-primary,
+    .card-icon>span {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .checkout-left-box.siddhi-cart-item::after,
+    .checkout-left-box.accordion::after,
+    .dropdown-item.active,
+    .dropdown-item:active,
+    .restaurant-detail-left h4.h6::after,
+    .sidebar-header h3.h6::after {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .page-link,
+    .rest-basic-detail .feather_icon a.rest-right-btn {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .page-link:hover {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .btn-outline-primary {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .btn-outline-primary:hover {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .gendetail-row h3 {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .dyn-menulist button.view_all_menu_btn {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .daytab-cousines ul li>span {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .daytab-cousines ul li>span:hover {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .feather-star.text-warning,
+    .list-card .offer_coupon_code .star .badge .feather-star.star_active,
+    .list-card-body .offer-btm .star .badge .feather-star.star_active {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    a.restaurant_direction img {
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+    }
+
+    .modal-body .recepie-body .custom-control .custom-control-label>span.text-muted {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .payment-table tr th {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .slick-dots li.slick-active button::before {
+        color:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+        background:
+            <?php echo $_COOKIE['section_color']; ?> !important;
+    }
+
+    .footer-top .title::after,
+    .product-list .list-card .list-card-image .discount-price {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .ft-contact-box .ft-icon {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .head-search .dropdown {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .list-card .list-card-body .offer-code a {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .vandor-sidebar .vandorcat-list li a:hover,
+    .vandor-sidebar .vandorcat-list li.active a {
+        border-color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .list-card .list-card-body p.text-gray span.fa.fa-map-marker,
+    .car-det-head .car-det-price span.price {
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .product-detail-page .addons-option .custom-control .custom-control-label.active::before {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .product-detail-page .addtocart .add-to-cart.btn.btn-primary.booknow {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .product-detail-page .addtocart .add-to-cart.btn.btn-primary {
+        border: 1px solid<?php echo $_COOKIE['section_color']; ?>;
+        color:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    @media (max-width: 991px) {
+        .bg-primary {
+            background:
+                <?php echo $_COOKIE['section_color']; ?> !important;
+        }
+    }
+
+    .swal2-actions .swal2-confirm.swal2-styled {
+        background:
+            <?php echo $_COOKIE['section_color']; ?>;
+    }
+
+    .or-line span{
+        color: <?php echo $_COOKIE['section_color']; ?>;
+     }
+</style>
+<?php } ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('vendor/select2/dist/js/select2.min.js') }}"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="{{ asset('js/crypto-js.js') }}"></script>
+<script src="{{ asset('js/jquery.cookie.js') }}"></script>
+<script src="{{ asset('js/jquery.validate.js') }}"></script>
+<script type="text/javascript">
+    var createdAtman = firebase.firestore.Timestamp.fromDate(new Date());
+    var database = firebase.firestore();
+    function validateFName(input) {
+        // Remove leading and trailing spaces
+        input.value = input.value.trimStart(); // Allow typing, but remove leading spaces
+    }
+    function validateLName(input) {
+        // Remove leading and trailing spaces
+        input.value = input.value.trimStart(); // Allow typing, but remove leading spaces
+    }
+    async function signupClick() {
+        $(".btn-sign-up").text('Please wait...');
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var mobileNumber = '+' + $(".country_code option:selected").attr('phoneCode') + '' + jQuery("#mobileNumber").val();
+        var countryCode = '+' + $(".country_code option:selected").attr('phoneCode');
+        var mob_no = jQuery("#mobileNumber").val();
+        var isoCode = $(".country_code").val();
+        var firstName = $("#firstName").val();
+        var lastName = $("#lastName").val();
+        var referralCode = $("#referral_code").val();
+        var referralBy = '';
+        const emailCheck = await database.collection("users").where('email', '==', email).get();
+        if (emailCheck.docs.length > 0) {
+            alert("{{trans('lang.already_account_with_same_email')}}");
+            return false;
+        }
+        
+        if (referralCode) {
+            var referralByRes = getReferralUserId(referralCode);
+            var referralBy = await referralByRes.then(function (refUserId) {
+                return refUserId;
+            });
+        }
+        var userReferralCode = Math.floor(Math.random() * 899999 + 100000);
+        userReferralCode = userReferralCode.toString();
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                var uuid = userCredential.user.uid;
+                database.collection("referral").doc(uuid).set({
+                    'id': uuid,
+                    'referralBy': referralBy ? referralBy : '',
+                    'referralCode': userReferralCode,
+                });
+                database.collection("users").doc(uuid).set({
+                    'appIdentifier':"web",
+                    'email': email,
+                    'firstName': firstName,
+                    'lastName': lastName,
+                    'id': uuid,
+                    'countryCode':countryCode,
+                    'phoneNumber': mob_no,
+                    'countryISOCode': isoCode,
+                    'role': "customer",
+                    'profilePictureURL': "",
+                    'provider':'email',
+                    'createdAt': createdAtman,
+                    'active':true
+                })
+                    .then(() => {
+                        firebase.auth().signInWithEmailAndPassword(email, password).then(function (result) {
+                            var url = "{{route('newRegister')}}";
+                            $.ajax({
+                                type: 'POST',
+                                url: url,
+                                data: {
+                                    userId: uuid,
+                                    email: email,
+                                    password: password,
+                                    firstName: firstName,
+                                    lastName: lastName
+                                },
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function (data) {
+                                    if (data.access) {
+                                        window.location = "{{url('/')}}";
+                                    }
+                                }
+                            })
+                        })
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                        $("#field_error").html(error);
+                        window.scrollTo(0, 0);
+                    });
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                $("#field_error").html(errorMessage);
+                window.scrollTo(0, 0);
+                $(".btn-sign-up").text("{{trans('lang.sign_up')}}");
+            });
+        return false;
+    }
+    async function getReferralUserId(referralCode) {
+        var refUserId = database.collection('referral').where('referralCode', '==', referralCode).get().then(async function (snapshots) {
+            if (snapshots.docs.length > 0) {
+                var referralData = snapshots.docs[0].data();
+                return referralData.id;
+            }
+        });
+        return refUserId;
+    }
+   
+    jQuery(document).ready(function () {
+        jQuery("#country_selector").select2({
+            templateResult: formatState,
+            templateSelection: formatState2,
+            placeholder: "Select Country",
+            allowClear: true
+        });
+    });
+    function signupWithPhone() {
+        $('#pass_div').hide();
+        $('#btn-signup-phone').hide();
+        $('#btn-sign-up').hide();
+        $('#send-code').show();
+        $('#btn-signup-email').show();
+        jQuery("#otp-box").hide();
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+            'size': 'invisible',
+            'callback': (response) => {
+            }
+        });
+    }
+    function signupWithEmail() {
+        $('#firstName_div').show();
+        $('#lastName_div').show();
+        $('#phone-box').show();
+        $('#email_div').show();
+        $('#pass_div').show();
+        $('#referral_div').show();
+        $('#btn-signup-phone').show();
+        $('#btn-sign-up').show();
+        $('#send-code').hide();
+        $('#verify_btn').hide();
+        jQuery("#otp-box").hide();
+        $('#verificationcode').attr('required', 'false');
+        $('#btn-signup-email').hide();
+    }
+    function sendOTP() {
+        var firstName = $('#firstName').val();
+        var lastName = $('#lastName').val();
+        var referral = $('#referral_code').val();
+        var email = $("#email").val();
+        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var existEmailFlag = false;      
+
+        if(firstName == ""){
+            $("#field_error1").css('display','block');
+            $("#field_error1").html("");
+            jQuery("#field_error1").html("Please enter first name");
+        }
+        if(lastName == ""){
+            $("#field_error1").css('display','block');
+            $("#field_error1").html("");
+            jQuery("#field_error1").html("Please enter last name");
+        }
+        if(email == ""){
+            $("#field_error1").css('display','block');
+            $("#field_error1").html("");
+            jQuery("#field_error1").html("Please enter email");
+        }
+        if(!regex.test(email)){
+            $("#field_error1").css('display','block');
+            $("#field_error1").html("");
+            jQuery("#field_error1").html("Invalid Email Address. Please enter a valid email.");
+        } 
+        if ($("#mobileNumber").val() == ""){
+            $("#field_error1").css('display','block');
+            $("#field_error1").html("");
+            jQuery("#field_error1").html("Please enter phone number");  
+        }
+        database.collection("users")
+        .where("email", "==", email)
+        .limit(1)
+        .get()
+        .then(function(emailSnapshot) {
+            if (!emailSnapshot.empty) {
+               existEmailFlag = true;
+            }
+
+            if(existEmailFlag){
+                $("#field_error1").css('display','block');
+                $("#field_error1").html("");
+                jQuery("#field_error1").html("This email address already exists");
+            }
+            if (jQuery("#mobileNumber").val() && $(".country_code option:selected").attr('phoneCode')) {
+                $("#field_error1").css('display','none');
+                var phoneNumber = '+' + $(".country_code option:selected").attr('phoneCode') + jQuery("#mobileNumber").val();
+                database.collection("users").where('phoneNumber', '==', phoneNumber).get().then(async function (snapshots) {
+                    if (snapshots.docs.length > 0) {
+                        Swal.fire({text: "{{trans('lang.account_exists_with_number')}}", icon: "error"});
+                        return false;
+                    } else {
+                        $('#hidden_fName').val(firstName);
+                        $('#hidden_lName').val(lastName);
+                        $('#hidden_referral').val(referral);
+                        $("#hidden_email").val(email);
+                        $("#hidden_countrycode").val($(".country_code option:selected").attr('phoneCode'));
+                        $("#hidden_isocode").val($(".country_code").val());
+                        $("#hidden_phone").val(jQuery("#mobileNumber").val());
+                        firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+                            .then(function (confirmationResult) {
+                                window.confirmationResult = confirmationResult;
+                                if (confirmationResult.verificationId) {
+                                    $('#firstName_div').hide();
+                                    $('#lastName_div').hide();
+                                    $('#email_div').hide();
+                                    $('#pass_div').hide();
+                                    $('#phone-box').hide();
+                                    $('#referral_div').hide();
+                                    $('#btn-signup-phone').hide();
+                                    $('#btn-sign-up').hide();
+                                    $('#send-code').show();
+                                    $('#btn-signup-email').show();
+                                    jQuery("#recaptcha-container").hide();
+                                    jQuery("#otp-box").show();
+                                    $('#verificationcode').attr('required', 'true');
+                                    jQuery("#verify_btn").show();
+                                }
+                            }).catch((error) => {
+                            console.error("Error writing document: ", error);
+                            $("#field_error").html(error);
+                            window.scrollTo(0, 0);
+                        });
+                    }
+                })
+            }
+        });
+       
+    }
+    function applicationVerifier() {
+        var code = $('#verificationcode').val();
+        if (code == "") {
+            $('.otp_error').html('Please Enter OTP')
+        } else {
+            window.confirmationResult.confirm(document.getElementById("verificationcode").value)
+                .then(async function (result) {
+                    var countrycode ='+' + $("#hidden_countrycode").val();
+                    var isoCode = $("#hidden_isocode").val();
+                    var phone = $("#hidden_phone").val();
+                    var mobileNumber = result.user.phoneNumber;
+                    var firstName = $('#hidden_fName').val();
+                    var lastName = $('#hidden_lName').val();
+                    var email = $("#hidden_email").val();
+                    var password = "";
+                    var referralCode = $('#hidden_referral').val();
+                    var referralBy = '';
+                    if (referralCode) {
+                        var referralByRes = getReferralUserId(referralCode);
+                        var referralBy = await referralByRes.then(function (refUserId) {
+                            return refUserId;
+                        });
+                    }
+                    var userReferralCode = Math.floor(Math.random() * 899999 + 100000);
+                    userReferralCode = userReferralCode.toString();
+                    var uuid = result.user.uid;
+                    database.collection("referral").doc(uuid).set({
+                        'id': uuid,
+                        'referralBy': referralBy ? referralBy : '',
+                        'referralCode': userReferralCode,
+                    });
+                    database.collection("users").doc(uuid).set({
+                        'appIdentifier':"web",
+                        'email': email,
+                        'firstName': firstName,
+                        'lastName': lastName,
+                        'id': uuid,
+                        'countryCode' : countrycode,
+                        'phoneNumber': phone,
+                        'countryISOCode': isoCode,
+                        'role': "customer",
+                        'profilePictureURL': "",
+                        'provider':'phone',
+                        'createdAt': createdAtman,
+                        'active':true
+                    }).then(() => {
+                        var url = "{{route('newRegister')}}";
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {
+                                userId: uuid,
+                                email: mobileNumber,
+                                password: password,
+                                firstName: firstName,
+                                lastName: lastName
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function (data) {
+                                if (data.access) {
+                                    window.location = "{{url('/')}}";
+                                }
+                            }
+                        })
+                    }).catch((error) => {
+                        $("#field_error").css('display','block');
+                        $("#field_error").html(error);
+                        window.scrollTo(0, 0);
+                    });
+                }).catch((error) => {
+                    $("#field_error").css('display','block');
+                    $("#field_error").html("");
+                    $('.otp_error').html("Invalid OTP. Please try again.");
+                });
+        }
+    }
+     var newcountriesjs = '<?php echo json_encode($newcountriesjs); ?>';
+	var newcountriesjs = JSON.parse(newcountriesjs);
+	function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var countryCode = state.element.value.toLowerCase(); // "GB" → "gb"
+        var baseUrl = "<?php echo URL::to('/'); ?>/flags/120/";
+        var $state = $(
+            '<span><img src="' + baseUrl + '/' + countryCode + '.png' + '" class="img-flag" /> ' + state.text + '</span>'
+        );
+        return $state;
+	}
+	function formatState2(state) {
+		if (!state.id) {
+			return state.text;
+		}
+		var countryCode = state.element.value.toLowerCase();
+		var baseUrl = "<?php echo URL::to('/'); ?>/flags/120/";
+		var $state = $(
+			'<span><img class="img-flag" src="' + baseUrl + '/' + countryCode + '.png' + '" /> <span>' + state.text + '</span></span>'
+		);
+		return $state;
+	}	
+	
+	var globalSettingsRef = database.collection('settings').doc("globalSettings");
+
+	globalSettingsRef.get().then(function(snapshot) {
+
+		var globalSettings = snapshot.data();
+
+		if (!globalSettings || !globalSettings.defaultCountryCode) {
+			return;
+		}
+
+		let defaultCountryCode = globalSettings.defaultCountryCode.toString().trim();
+		let $option = null;
+
+		$option = $("#country_selector option[value='" + defaultCountryCode.toUpperCase() + "']");
+
+		if ($option.length === 0) {
+			let phoneCode = defaultCountryCode.replace('+', '');
+			$option = $("#country_selector option[phoneCode='" + phoneCode + "']");
+		}
+
+		if ($option.length > 0) {
+			$("#country_selector").val($option.val()).trigger('change');
+		} else {
+			console.warn("Default country not found:", defaultCountryCode);
+		}
+
+	}).catch(function(error) {
+		console.error("Error fetching global settings:", error);
+	});
+</script>

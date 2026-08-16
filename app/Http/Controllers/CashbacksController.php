@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+
+class CashbacksController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        if (!isset($_COOKIE['address_name'])) {
+            \Redirect::to('set-location')->send();
+        }
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('cashbacks.cashback');
+    }
+}

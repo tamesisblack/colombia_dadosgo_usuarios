@@ -4546,8 +4546,12 @@ width: auto;z-index: 1;}
         position: static;
     }
     .st-home-banner-left {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 8px !important;
+        padding-bottom: 16px !important;
+    }
+    .st-home-banner-content {
+        margin-top: 8px !important;
+        padding-right: 8px;
     }
     .ecommerce-banner .banner-img img,.ecommerce-banner.multivendor-banner .banner-img img {
         height: auto;

@@ -3834,9 +3834,8 @@ max-height: 120px;
     right: 0;
 }
 .st-home-banner {
-    background: url(../img/land-banner-bg.png) no-repeat left top;
-    background-size: 50% auto;
-    background-repeat: no-repeat;padding-bottom: 40px;
+    background: none;
+    padding-bottom: 40px;
 }
 .st-home-banner-right img {
     max-width: 100%;
@@ -3952,13 +3951,13 @@ max-height: 120px;
     background-size: 8px;
 }
 .st-home-service {
-    background: #1F1F1F;
+    background: #E63946;
     padding-top: 80px;
     padding-bottom: 80px;
 }
 .st-service-box {
     padding: 42px 40px;
-background: #262626;
+background: #c0252f;
 border-radius: 30px;
 height: 100%;}
 .st-service-box h3 {
@@ -3979,12 +3978,15 @@ height: 100%;}
 .st-appstore {
     padding-top: 70px;
     padding-bottom: 70px;position: relative;z-index: 2;
+    text-align: center;
 }
 .st-appstore-right img {
     max-width: 100%;
 }
-.st-appstore:after{position: absolute; top: auto;left: 0px; background: url(../img/appstore-pizza.png) no-repeat left center; width: 97px; height: 167px; content: ""; bottom: 120px; margin: auto;z-index: -1;}
-.st-appstore-left:after{position: absolute; top: -50px;left: -75px; background: url(../img/appstore-round.png) no-repeat center; width: 136px; height: 136px; content: "";}
+.st-appstore:after,
+.st-appstore-left:after {
+    display: none;
+}
 .st-appstore-left h3 {
     font-weight: 600;
     font-size: 34px;
@@ -4882,11 +4884,17 @@ width: auto;z-index: 1;}
         margin-bottom: 10px;
     }
     .footer-top .footer-about .d-flex {
-        display: table !important;
-        width: 100%;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: auto;
     }
     .footer-copyright .d-flex {
-        display: table !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
         width: 100%;
         text-align: center;
     }

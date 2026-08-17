@@ -824,7 +824,7 @@
                     data: {
                         serviceJson: btoa(serviceJson),
                     },
-                    url: "{{ route('store-firebase-service') }}",
+                    url: "/store-firebase-service",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },

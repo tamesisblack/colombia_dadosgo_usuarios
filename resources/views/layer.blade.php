@@ -16,10 +16,9 @@
         $('#home').html(homepageTemplateData.homepageTemplate);
         await globalSettingsRef.get().then(async function (globalSettingsSnapshots) {
             var globalSettingsData = globalSettingsSnapshots.data();
-            var src_new = globalSettingsData.appLogo;
-            $('#logo_web').html('<img onerror="this.onerror=null;this.src=\'' + placeholderImageSrc + '\'"alt="#" class="logo_web img-fluid" src="'+src_new+'">');
             $('.location-group .locate-me').attr("onclick","getCurrentLocation()");
-            $("#logo_web").attr('src', globalSettingsData.appLogo);
+            $('#logo_web').hide();
+            $('header.section-header .brand-wrap').hide();
             $('.hc-offcanvas-nav h2').html(globalSettingsData.applicationName);
             $("#footer_logo_web").attr('src', globalSettingsData.appLogo);
             setCookie('section_color', globalSettingsData.website_color, 365);

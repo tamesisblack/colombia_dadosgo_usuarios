@@ -27,11 +27,23 @@
             setCookie('favicon', globalSettingsData.favicon, 365);
             document.title = globalSettingsData.meta_title;
         });
-        if(mapType == 'google'){
-            initialize();
-        }else{
-            init();
+        try {
+            if(mapType == 'google'){
+                if (window.google && google.maps && google.maps.places) {
+                    initialize();
+                }
+                // Si la libreria de Google Maps aun no ha cargado, loadGoogleMapsScript()
+                // (footer.blade.php) llama a initialize() en su propio onload y deja el
+                // autocompletado listo igual, sin bloquear esta pantalla.
+            }else{
+                init();
+            }
+        } catch (e) {
+            console.error('Error inicializando el mapa:', e);
         }
+        jQuery("#data-table_processing").hide();
+    }).catch(function (error) {
+        console.error('Error cargando la plantilla de inicio:', error);
         jQuery("#data-table_processing").hide();
     });
     $(document).ready(function () {

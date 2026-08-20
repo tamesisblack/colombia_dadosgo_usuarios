@@ -33,7 +33,7 @@
         var referenceToken = "{{ $reference_token ?? '' }}";
         
         if (!referenceToken) {
-            alert('Invalid payment session. Please try again.');
+            alert('Sesión de pago inválida. Inténtalo de nuevo.');
             window.location.href = "{{ route('customize.giftcard') }}";
             return;
         }
@@ -56,7 +56,7 @@
             
         } catch (error) {
             console.error('Foloosi error:', error);
-            alert('Failed to initialize Foloosi payment: ' + error.message);
+            alert('No se pudo iniciar el pago con Foloosi: ' + error.message);
             window.location.href = "{{ route('customize.giftcard') }}";
         }
     })();

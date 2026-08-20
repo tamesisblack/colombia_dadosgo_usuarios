@@ -38,13 +38,13 @@
         } 
         else {
             console.error('No redirectUrl in response:', data);
-            alert('Payment initiation failed: ' + (data.message || JSON.stringify(data)));
+            alert('No se pudo iniciar el pago: ' + (data.message || JSON.stringify(data)));
             window.location.href = '{{ route("success") }}';
         }
     })
     .catch(error => {
         console.error('Fetch Error:', error);
-        alert('Network error during PhonePe init');
+        alert('Error de red al iniciar PhonePe');
         window.location.href = '{{ route("checkout") }}';
     });
 })();

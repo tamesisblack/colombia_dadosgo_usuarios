@@ -131,7 +131,7 @@
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.name')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="cardholder-name" required type="text"
-                                                               placeholder="Cardholder Name" class="form-control"
+                                                               placeholder="Nombre del titular" class="form-control"
                                                                value="<?php echo $authorName; ?>"/>
                                                     </div>
                                                 </div>
@@ -139,7 +139,7 @@
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.address')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="address_line1" id="address_line1" required
-                                                               type="text" placeholder="Address" class="form-control"
+                                                               type="text" placeholder="Dirección" class="form-control"
                                                                value="<?php echo $gift_cart_order['address_line1']; ?>"/>
                                                     </div>
                                                 </div>
@@ -147,7 +147,7 @@
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.address')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="address_line1" id="address_line1" required
-                                                               type="text" placeholder="Address" class="form-control"
+                                                               type="text" placeholder="Dirección" class="form-control"
                                                                value="<?php echo $gift_cart_order['address_line1']; ?>"/>
                                                     </div>
                                                 </div>
@@ -155,7 +155,7 @@
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.landmark')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="address_line2" id="address_line2" required
-                                                               type="text" placeholder="Landmark" class="form-control"
+                                                               type="text" placeholder="Punto de referencia" class="form-control"
                                                                value="<?php echo $gift_cart_order['address_line2']; ?>"/>
                                                     </div>
                                                 </div>
@@ -434,14 +434,14 @@
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.state')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="state" id="state" required type="text"
-                                                               placeholder="State" class="form-control" value=""/>
+                                                               placeholder="Departamento/Estado" class="form-control" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">{{trans('lang.city')}}</label>
                                                     <div class="col-sm-6">
                                                         <input name="city" id="city" required type="text"
-                                                               placeholder="City" class="form-control"
+                                                               placeholder="Ciudad" class="form-control"
                                                                value="<?php echo $gift_cart_order['address_city']; ?>"/>
                                                     </div>
                                                 </div>

@@ -534,13 +534,13 @@
                 html = html + '<input type="hidden" class="deliveryCharge_' + String(order_id) + '" value="' +
                     deliveryCharge + '">';
                 html = html +
-                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br><span class="text-dark font-weight-bold">' +
+                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total a pagar<br><span class="text-dark font-weight-bold">' +
                     order_total_val +
                     '</span></div><div class="text-right">';
                 if (showReorder && !inValidVendors.has(val.vendorID)) {
                     html +=
                         ' <a href="javascript:void(0);" class="btn btn-primary px-3 reorder-add-to-cart mr-2" data-id="' +
-                        String(order_id) + '">Reorder</a>';
+                        String(order_id) + '">Volver a pedir</a>';
                 }
                 html = html + '<a href="' + view_contact +
                     '" class="btn btn-outline-primary px-3">{{trans("lang.help")}}</a> </div></div></div></div></div></div>';
@@ -791,13 +791,13 @@
                 html = html + '<input type="hidden" class="deliveryCharge_' + String(order_id) + '" value="' +
                     deliveryCharge + '">';
                 html = html +
-                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br><span class="text-dark font-weight-bold">' +
+                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total a pagar<br><span class="text-dark font-weight-bold">' +
                     order_total_val +
                     '</span></div><div class="text-right">';
                 if (showReorder && !inValidVendors.has(val.vendorID)) {
                     html +=
                         ' <a href="javascript:void(0);" class="btn btn-primary px-3 reorder-add-to-cart mr-2" data-id="' +
-                        String(order_id) + '">Reorder</a>';
+                        String(order_id) + '">Volver a pedir</a>';
                 }
                 html = html + '<a href="' + view_contact +
                     '" class="btn btn-outline-primary px-3">{{trans("lang.help")}}</a> </div></div></div></div></div></div>';
@@ -1038,13 +1038,13 @@
                 html = html + '<input type="hidden" class="deliveryCharge_' + String(order_id) + '" value="' +
                     deliveryCharge + '">';
                 html = html +
-                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br><span class="text-dark font-weight-bold">' +
+                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total a pagar<br><span class="text-dark font-weight-bold">' +
                     order_total_val +
                     '</span></div><div class="text-right">';
                 if (showReorder && !inValidVendors.has(val.vendorID)) {
                     html +=
                         ' <a href="javascript:void(0);" class="btn btn-primary px-3 reorder-add-to-cart mr-2" data-id="' +
-                        String(order_id) + '">Reorder</a>';
+                        String(order_id) + '">Volver a pedir</a>';
                 }
                 html = html + '<a href="' + view_contact +
                     '" class="btn btn-outline-primary px-3">{{trans("lang.help")}}</a> </div></div></div></div></div></div>';
@@ -1285,13 +1285,13 @@
                 html = html + '<input type="hidden" class="deliveryCharge_' + String(order_id) + '" value="' +
                     deliveryCharge + '">';
                 html = html +
-                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br><span class="text-dark font-weight-bold">' +
+                    '</div><div class="text-muted m-0 ml-auto mr-3 small">Total a pagar<br><span class="text-dark font-weight-bold">' +
                     order_total_val +
                     '</span></div><div class="text-right">';
                 if (showReorder && !inValidVendors.has(val.vendorID)) {
                     html +=
                         ' <a href="javascript:void(0);" class="btn btn-primary px-3 reorder-add-to-cart mr-2" data-id="' +
-                        String(order_id) + '">Reorder</a>';
+                        String(order_id) + '">Volver a pedir</a>';
                 }
                 html = html + '<a href="' + view_contact +
                     '" class="btn btn-outline-primary px-3">{{trans("lang.help")}}</a> </div></div></div></div></div></div>';

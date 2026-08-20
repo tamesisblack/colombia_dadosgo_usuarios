@@ -23,17 +23,17 @@ foreach ($countries as $keycountry => $valuecountry) {
                 <form class="mt-3 mb-4" action="javascript:void(0)" onsubmit="return signupClick()">
                     <div class="form-group" id="firstName_div">
                         <label for="firstName" class="text-dark">{{trans('lang.first_name')}}</label>
-                        <input type="text" placeholder="Enter FirstName" value="{{ old('firstName', $firstName) }}" class="form-control" id="firstName" required>
+                        <input type="text" placeholder="Ingresa tu nombre" value="{{ old('firstName', $firstName) }}" class="form-control" id="firstName" required>
                         <input type="hidden" id="hidden_fName" />
                     </div>
                     <div class="form-group" id="lastName_div">
                         <label for="lastName" class="text-dark">{{trans('lang.last_name')}}</label>
-                        <input type="text" placeholder="Enter LastName" value="{{ old('lastName', $lastName) }}" class="form-control" id="lastName" required>
+                        <input type="text" placeholder="Ingresa tu apellido" value="{{ old('lastName', $lastName) }}" class="form-control" id="lastName" required>
                         <input type="hidden" id="hidden_lName" />
                     </div>
                     <div class="form-group" id="email_div">
                         <label for="email" class="text-dark">{{trans('lang.email_address')}}</label>
-                        <input type="email" placeholder="Enter Email Address" disabled class="form-control" value="{{ old('email', $email) }}" id="email" required
+                        <input type="email" placeholder="Ingresa tu correo electrónico" disabled class="form-control" value="{{ old('email', $email) }}" id="email" required
                             autocomplete="new-password" >
                     </div>
                     <div class="form-group" id="phone-box">
@@ -74,7 +74,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                     <div class="form-group" id="referral_div">
                         <label for="referral_code" class="text-dark">{{trans('lang.referral_code')}}
                             ({{trans('lang.optional')}})</label>
-                        <input type="text" placeholder="Enter Referral Code" class="form-control" id="referral_code">
+                        <input type="text" placeholder="Ingresa el código de referido" class="form-control" id="referral_code">
                         <input type="hidden" id="hidden_referral" />
                     </div>
                     <div class="form-group">
@@ -553,7 +553,7 @@ foreach ($countries as $keycountry => $valuecountry) {
         jQuery("#country_selector").select2({
             templateResult: formatState,
             templateSelection: formatState2,
-            placeholder: "Select Country",
+            placeholder: "Selecciona un país",
             allowClear: true
         });
     });

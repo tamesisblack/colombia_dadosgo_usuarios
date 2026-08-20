@@ -45,7 +45,7 @@
                                     <label for="exampleFormControlTextarea1"
                                            class="small font-weight-bold">{{trans('lang.how_can_we_help_you')}}</label>
                                     <textarea class="form-control user_comment_form" id="exampleFormControlTextarea1"
-                                              placeholder="Hi there, I would like to ..." rows="3" name="message"
+                                              placeholder="Hola, me gustaría..." rows="3" name="message"
                                               required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary" href="#">{{trans('lang.submit')}}</button>

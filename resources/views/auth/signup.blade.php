@@ -24,17 +24,17 @@
                 <form class="mt-3 mb-4" action="javascript:void(0)" onsubmit="return signupClick()">
                     <div class="form-group" id="firstName_div">
                         <label for="firstName" class="text-dark">{{trans('lang.first_name')}}</label>
-                        <input type="text" placeholder="Enter FirstName" class="form-control" id="firstName" oninput="validateFName(this)"  required>
+                        <input type="text" placeholder="Ingresa tu nombre" class="form-control" id="firstName" oninput="validateFName(this)"  required>
                         <input type="hidden" id="hidden_fName" />
                     </div>
                     <div class="form-group" id="lastName_div">
                         <label for="lastName" class="text-dark">{{trans('lang.last_name')}}</label>
-                        <input type="text" placeholder="Enter LastName" class="form-control" id="lastName" oninput="validateLName(this)" required>
+                        <input type="text" placeholder="Ingresa tu apellido" class="form-control" id="lastName" oninput="validateLName(this)" required>
                         <input type="hidden" id="hidden_lName" />
                     </div>
                     <div class="form-group" id="email_div">
                         <label for="email" class="text-dark">{{trans('lang.email_address')}}</label>
-                        <input type="email" placeholder="Enter Email Address" class="form-control" id="email" required
+                        <input type="email" placeholder="Ingresa tu correo electrónico" class="form-control" id="email" required
                             autocomplete="new-password" >
                         <input type="hidden" id="hidden_email" />
                     </div>
@@ -61,13 +61,13 @@
                     </div>
                     <div class="form-group" id="pass_div">
                         <label for="password" class="text-dark">{{trans('lang.password')}}</label>
-                        <input type="password" placeholder="Enter Password" class="form-control" id="password"
+                        <input type="password" placeholder="Ingresa tu contraseña" class="form-control" id="password"
                             minlength="8" required autocomplete="new-password">
                     </div>
                     <div class="form-group" id="referral_div">
                         <label for="referral_code" class="text-dark">{{trans('lang.referral_code')}}
                             ({{trans('lang.optional')}})</label>
-                        <input type="text" placeholder="Enter Referral Code" class="form-control" id="referral_code">
+                        <input type="text" placeholder="Ingresa el código de referido" class="form-control" id="referral_code">
                         <input type="hidden" id="hidden_referral" />
                     </div>
                     <div class="form-group">
@@ -92,7 +92,7 @@
                     </button>
                 </form>
                 <div class="or-line mb-4">
-                    <span>OR</span>
+                    <span>O</span>
                 </div>
                 <div class="new-acc d-flex align-items-center justify-content-center">
                     <a href="#" class="btn btn-primary" id="btn-signup-phone" onclick="signupWithPhone()">
@@ -541,7 +541,7 @@
         jQuery("#country_selector").select2({
             templateResult: formatState,
             templateSelection: formatState2,
-            placeholder: "Select Country",
+            placeholder: "Selecciona un país",
             allowClear: true
         });
     });

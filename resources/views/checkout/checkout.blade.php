@@ -270,7 +270,7 @@
                         <div class="col-md-12 form-group">
                             <label class="form-label">{{ trans('lang.street_1') }}</label>
                             <div class="input-group">
-                                <input placeholder="Delivery Area" type="text" id="address_line1" class="form-control">
+                                <input placeholder="Zona de entrega" type="text" id="address_line1" class="form-control">
                                 <div class="input-group-append">
                                     <button onclick="getCurrentLocationAddress1()" type="button" class="btn btn-outline-secondary"><i class="feather-map-pin"></i>
                                     </button>
@@ -278,10 +278,10 @@
                             </div>
                         </div>
                         <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.landmark') }}</label><input placeholder="Complete Address e.g. house number, street name, landmark" value="" id="address_line2" type="text" class="form-control"></div>
-                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.zip_code') }}</label><input placeholder="Zip Code" id="address_zipcode" type="text" class="form-control">
+                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.zip_code') }}</label><input placeholder="Código postal" id="address_zipcode" type="text" class="form-control">
                         </div>
-                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.city') }}</label><input placeholder="City" id="address_city" type="text" class="form-control"></div>
-                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.country') }}</label><input placeholder="Country" id="address_country" type="text" class="form-control">
+                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.city') }}</label><input placeholder="Ciudad" id="address_city" type="text" class="form-control"></div>
+                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.country') }}</label><input placeholder="País" id="address_country" type="text" class="form-control">
                         </div>
                         <input type="hidden" name="address_lat" id="address_lat">
                         <input type="hidden" name="address_lng" id="address_lng">

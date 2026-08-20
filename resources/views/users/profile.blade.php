@@ -81,7 +81,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                                                         </option>
                                                         @endforeach
                                                     </select>
-                                                    <input class="form-control user_phone" disabled  placeholder="Phone" id="phone" type="phone"
+                                                    <input class="form-control user_phone" disabled  placeholder="Teléfono" id="phone" type="phone"
                                                             name="phone" value="{{ old('phone') }}" required
                                                         autocomplete="phone" autofocus>
                                                     <div id="error2" class="err"></div>

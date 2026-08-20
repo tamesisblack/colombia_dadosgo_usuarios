@@ -18,7 +18,7 @@
                     <form id="paymongo-card-form">
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label">Card Number</label>
+                            <label class="form-label">Número de tarjeta</label>
                             <input type="text" class="form-control" id="card_number" placeholder="4242 4242 4242 4242" required maxlength="19">
                         </div>
                         <div class="row">
@@ -27,8 +27,8 @@
                                 <input type="text" class="form-control" id="exp_month" placeholder="MM" required maxlength="2">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">YYYY</label>
-                                <input type="text" class="form-control" id="exp_year" placeholder="YYYY" required maxlength="4">
+                                <label class="form-label">AAAA</label>
+                                <input type="text" class="form-control" id="exp_year" placeholder="AAAA" required maxlength="4">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">CVC</label>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label class="form-label">Name on Card</label>
+                            <label class="form-label">Nombre en la tarjeta</label>
                             <input type="text" class="form-control" id="card_name" value="{{ $authorName }}" required>
                         </div>
 
@@ -68,21 +68,21 @@ document.getElementById('paymongo-card-form').addEventListener('submit', async f
     };
 
     if (!formData.card_number || formData.card_number.length < 15) {
-        alert('Please enter a valid card number');
+        alert('Ingresa un número de tarjeta válido');
         btn.disabled = false;
         btn.innerHTML = 'Pay {{ $formatted_price }}';
         return;
     }
 
     if (!formData.exp_month || !formData.exp_year) {
-        alert('Please enter expiry date');
+        alert('Ingresa la fecha de vencimiento');
         btn.disabled = false;
         btn.innerHTML = 'Pay {{ $formatted_price }}';
         return;
     }
 
     if (!formData.cvc) {
-        alert('Please enter CVC');
+        alert('Ingresa el CVC');
         btn.disabled = false;
         btn.innerHTML = 'Pay {{ $formatted_price }}';
         return;
@@ -103,12 +103,12 @@ document.getElementById('paymongo-card-form').addEventListener('submit', async f
         if (result.status) {
             window.location.href = result.redirect || "{{ route('giftcard.success') }}";
         } else {
-            alert(result.message || 'Payment failed. Please try again.');
+            alert(result.message || 'El pago falló. Inténtalo de nuevo.');
             btn.disabled = false;
             btn.innerHTML = 'Pay {{ $formatted_price }}';
         }
     } catch (err) {
-        alert('Network error: ' + err.message);
+        alert('Error de red: ' + err.message);
         btn.disabled = false;
         btn.innerHTML = 'Pay {{ $formatted_price }}';
     }

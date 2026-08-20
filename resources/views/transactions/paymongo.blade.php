@@ -18,7 +18,7 @@
                     <form id="paymongo-card-form">
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label">Card Number</label>
+                            <label class="form-label">Número de tarjeta</label>
                             <input type="text" class="form-control" id="card_number" placeholder="4242 4242 4242 4242" required maxlength="19">
                         </div>
                         <div class="row">
@@ -27,8 +27,8 @@
                                 <input type="text" class="form-control" id="exp_month" placeholder="MM" required maxlength="2">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">YYYY</label>
-                                <input type="text" class="form-control" id="exp_year" placeholder="YYYY" required maxlength="4">
+                                <label class="form-label">AAAA</label>
+                                <input type="text" class="form-control" id="exp_year" placeholder="AAAA" required maxlength="4">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">CVC</label>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label class="form-label">Name on Card</label>
+                            <label class="form-label">Nombre en la tarjeta</label>
                             <input type="text" class="form-control" id="card_name" value="{{ $authorName }}" required>
                         </div>
 
@@ -74,7 +74,7 @@
             var cardName = document.getElementById('card_name').value;
             
             if (!cardNumber || !expMonth || !expYear || !cvc || !cardName) {
-                alert('Please fill in all card details');
+                alert('Completa todos los datos de la tarjeta');
                 return;
             }
             
@@ -116,7 +116,7 @@
                 window.location.href = "{{ route('wallet-success') }}";
             }).catch(function(error) {
                 console.error('PayMongo error:', error);
-                alert('Payment failed: ' + (error.message || 'Please try again'));
+                alert('El pago falló: ' + (error.message || 'Inténtalo de nuevo'));
                 payButton.disabled = false;
                 payButton.innerHTML = 'Pay {{ $formatted_price }}';
             });

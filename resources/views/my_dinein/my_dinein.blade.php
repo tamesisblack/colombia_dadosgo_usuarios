@@ -148,31 +148,31 @@ var history_request= database.collection('booked_table').where("author.id","==",
                 orderRestaurantImage = place_holder_image;
             }
             var detailHTML = '<div class="request-data">';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Name</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Nombre</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestFirstName + ' ' + val.guestLastName + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Email</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Correo</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestEmail + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Phone</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Teléfono</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestPhone + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Occasion</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Ocasión</strong></span>';
             detailHTML = detailHTML + '<span>' + val.occasion + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total Guest</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total de invitados</strong></span>';
             detailHTML = detailHTML + '<span>' + val.totalGuest + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>First Visit</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Primera visita</strong></span>';
             detailHTML = detailHTML + '<span>' + val.firstVisit + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Special Request</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Solicitud especial</strong></span>';
             detailHTML = detailHTML + '<span>' + val.specialRequest + '</span></div>';
             detailHTML = detailHTML + '</div>';
             var statustext = "";
             var statustext_class = "";
             if (val.status == "Order Rejected") {
-                statustext = "Request Rejected";
+                statustext = "Solicitud rechazada";
                 statustext_class = "bg-rejected";
             } else if (val.status == "Order Placed") {
-                statustext = "Requested";
+                statustext = "Solicitado";
                 statustext_class = "bg-pending";
             } else if (val.status == "Order Accepted") {
-                statustext = "Request Accepted";
+                statustext = "Solicitud aceptada";
                 statustext_class = "bg-success";
             }
             html = html +
@@ -181,12 +181,12 @@ var history_request= database.collection('booked_table').where("author.id","==",
                 '" class="img-fluid order_img rounded"></div><div><p class="mb-0 font-weight-bold"><a href="' +
                 view_vendor_details + '" class="text-dark">' + val.vendor.title +
                 '</a></p><p class="mb-0"><span class="fa fa-map-marker"></span> ' + val.vendor.location +
-                '</p><p>ORDER ' + val.id + '</p></div><div class="ml-auto ord-com-btn"><p class=" ' +
+                '</p><p>PEDIDO ' + val.id + '</p></div><div class="ml-auto ord-com-btn"><p class=" ' +
                 statustext_class + ' text-white py-1 px-2 rounded small mb-1">' + statustext +
                 '</p><p class="small font-weight-bold text-center"><i class="feather-clock"></i> ' + val.date.toDate().toDateString()+'<br/>'+val.date.toDate().toTimeString() + '</p></div></div>' +
                 detailHTML + '<div class="d-flex pt-3 m-d-flex"><div class="small">';
             html = html + '</div><div class="text-right"><a href="' + view_contact +
-                '" class="btn btn-outline-primary px-3">Help</a> </div></div></div></div></div></div>';
+                '" class="btn btn-outline-primary px-3">Ayuda</a> </div></div></div></div></div></div>';
         });
         return html;
     }
@@ -220,31 +220,31 @@ var history_request= database.collection('booked_table').where("author.id","==",
                 orderRestaurantImage = place_holder_image;
             }
             var detailHTML = '<div class="request-data">';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Name</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Nombre</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestFirstName + ' ' + val.guestLastName + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Email</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Correo</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestEmail + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Phone</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Teléfono</strong></span>';
             detailHTML = detailHTML + '<span>' + val.guestPhone + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Occasion</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Ocasión</strong></span>';
             detailHTML = detailHTML + '<span>' + val.occasion + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total Guest</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total de invitados</strong></span>';
             detailHTML = detailHTML + '<span>' + val.totalGuest + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>First Visit</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Primera visita</strong></span>';
             detailHTML = detailHTML + '<span>' + val.firstVisit + '</span></div>';
-            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Special Request</strong></span>';
+            detailHTML = detailHTML + '<div class="sub-details"><span><strong>Solicitud especial</strong></span>';
             detailHTML = detailHTML + '<span>' + val.specialRequest + '</span></div>';
             detailHTML = detailHTML + '</div>';
             var statustext = "";
             var statustext_class = "";
             if (val.status == "Order Rejected") {
-                statustext = "Request Rejected";
+                statustext = "Solicitud rechazada";
                 statustext_class = "bg-rejected";
             } else if (val.status == "Order Placed") {
-                statustext = "Requested";
+                statustext = "Solicitado";
                 statustext_class = "bg-pending";
             } else if (val.status == "Order Accepted") {
-                statustext = "Request Accepted";
+                statustext = "Solicitud aceptada";
                 statustext_class = "bg-success";
             }
             html = html +
@@ -253,13 +253,13 @@ var history_request= database.collection('booked_table').where("author.id","==",
                 '" class="img-fluid order_img rounded"></div><div><p class="mb-0 font-weight-bold"><a href="' +
                 view_vendor_details + '" class="text-dark">' + val.vendor.title +
                 '</a></p><p class="mb-0"><span class="fa fa-map-marker"></span> ' + val.vendor.location +
-                '</p><p>ORDER ' + val.id + '</p></div><div class="ml-auto ord-com-btn"><p class=" ' +
+                '</p><p>PEDIDO ' + val.id + '</p></div><div class="ml-auto ord-com-btn"><p class=" ' +
                 statustext_class + ' text-white py-1 px-2 rounded small mb-1">' + statustext +
                 '</p><p class="small font-weight-bold text-center"><i class="feather-clock"></i> ' + val.date.toDate().toDateString()+'<br/>'+val.date.toDate().toTimeString()
                + '</p></div></div>' +
                 detailHTML + '<div class="d-flex pt-3 m-d-flex"><div class="small">';
             html = html + '</div><div class="text-right"><a href="' + view_contact +
-                '" class="btn btn-outline-primary px-3">Help</a></div></div></div></div></div></div>';
+                '" class="btn btn-outline-primary px-3">Ayuda</a></div></div></div></div></div></div>';
         });
         return html;
     }
@@ -294,21 +294,21 @@ var history_request= database.collection('booked_table').where("author.id","==",
                     orderRestaurantImage = place_holder_image;
                 }
                 var detailHTML = '<div class="request-data">';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Name</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Nombre</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.guestFirstName + ' ' + val.guestLastName +
                     '</span></div>';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Email</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Correo</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.guestEmail + '</span></div>';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Phone</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Teléfono</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.guestPhone + '</span></div>';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Occasion</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Ocasión</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.occasion + '</span></div>';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total Guest</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Total de invitados</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.totalGuest + '</span></div>';
-                detailHTML = detailHTML + '<div class="sub-details"><span><strong>First Visit</strong></span>';
+                detailHTML = detailHTML + '<div class="sub-details"><span><strong>Primera visita</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.firstVisit + '</span></div>';
                 detailHTML = detailHTML +
-                    '<div class="sub-details"><span><strong>Special Request</strong></span>';
+                    '<div class="sub-details"><span><strong>Solicitud especial</strong></span>';
                 detailHTML = detailHTML + '<span>' + val.specialRequest + '</span></div>';
                 detailHTML = detailHTML + '</div>';
                 html = html +
@@ -317,12 +317,12 @@ var history_request= database.collection('booked_table').where("author.id","==",
                     '" class="img-fluid order_img rounded"></div><div><p class="mb-0 font-weight-bold"><a href="' +
                     view_vendor_details + '" class="text-dark">' + val.vendor.title +
                     '</a></p><p class="mb-0"><span class="fa fa-map-marker"></span> ' + val.vendor.location +
-                    '</p><p>ORDER ' + val.id +
+                    '</p><p>PEDIDO ' + val.id +
                     '</p></div><div class="ml-auto ord-com-btn"><p class="bg-rejected text-white py-1 px-2 rounded small mb-1">{{trans('lang.rejected')}}</p><p class="small font-weight-bold text-center"><i class="feather-clock"></i> ' +
                     val.date.toDate().toDateString() + '<br/>' + val.date.toDate().toTimeString() +
                     '</p></div></div>' + detailHTML + '<div class="d-flex pt-3 m-d-flex"><div class="small">';
                 html = html + '</div><div class="text-right"><a href="' + view_contact +
-                    '" class="btn btn-outline-primary px-3">Help</a></div></div></div></div></div></div>';
+                    '" class="btn btn-outline-primary px-3">Ayuda</a></div></div></div></div></div></div>';
             }
         });
         return html;

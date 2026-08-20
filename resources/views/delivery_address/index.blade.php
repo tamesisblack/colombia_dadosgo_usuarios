@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input placeholder="Nearby Landmark (optinal)" value="" id="landmark" type="text"
+                                <input placeholder="Punto de referencia cercano (opcional)" value="" id="landmark" type="text"
                                        class="form-control">
                             </div>
                             <div class="col-md-12 form-group">

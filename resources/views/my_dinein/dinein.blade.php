@@ -118,7 +118,7 @@
                                             <label class="col-sm-2 col-form-label">{{ trans('lang.comment') }}</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control review_comment"
-                                                    placeholder="Review Comment">
+                                                    placeholder="Comentario de la reseña">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -230,11 +230,11 @@
                 $("#order-addreess").html("");
                 $("#order-number").html(order_number);
                 if (order_status == "Order Placed") {
-                    $("#order-status").html("Requested");
+                    $("#order-status").html("Solicitado");
                 } else if (order_status == "Order Rejected") {
-                    $("#order-status").html("Request Rejected");
+                    $("#order-status").html("Solicitud rechazada");
                 } else if (order_status == "Order Accepted") {
-                    $("#order-status").html("Request Accepted");
+                    $("#order-status").html("Solicitud aceptada");
                 }
                 var order_restaurant = '<tr>';
                 var restaurantImage = orderDetails.vendor.photo;

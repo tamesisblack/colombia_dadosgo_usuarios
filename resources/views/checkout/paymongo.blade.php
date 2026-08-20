@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form id="paymongo-card-form">
                         <div class="mb-3">
-                            <label class="form-label">Card Number</label>
+                            <label class="form-label">Número de tarjeta</label>
                             <input type="text" class="form-control" id="card_number" placeholder="4242 4242 4242 4242" required maxlength="19">
                         </div>
                         <div class="row">
@@ -21,8 +21,8 @@
                                 <input type="text" class="form-control" id="exp_month" placeholder="MM" required maxlength="2">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">YYYY</label>
-                                <input type="text" class="form-control" id="exp_year" placeholder="YYYY" required maxlength="4">
+                                <label class="form-label">AAAA</label>
+                                <input type="text" class="form-control" id="exp_year" placeholder="AAAA" required maxlength="4">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">CVC</label>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label class="form-label">Name on Card</label>
+                            <label class="form-label">Nombre en la tarjeta</label>
                             <input type="text" class="form-control" id="card_name" value="{{ $authorName }}" required>
                         </div>
 

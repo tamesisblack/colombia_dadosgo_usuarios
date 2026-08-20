@@ -251,7 +251,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">{{ trans('lang.comment') }}</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control review_comment" id="review_comment" name="review_comment" placeholder="Review Comment" value="">
+                                                <input type="text" class="form-control review_comment" id="review_comment" name="review_comment" placeholder="Comentario de la reseña" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">

@@ -356,16 +356,16 @@ foreach ($countries as $keycountry => $valuecountry) {
                         <div id="googleBtn"></div>
                     </div>
                     <div class="or-line mb-3 mt-3">
-                        <span>OR</span>
+                        <span>O</span>
                     </div>
                     <button type="button" onclick="loginWithPhoneClick()" id="loginphon_btn"
                             class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light btn btn-primary">
-                        <i class="fa fa-phone mr-2"> </i> {{ __('Login') }} {{trans('lang.with_phone')}}</button>
+                        <i class="fa fa-phone mr-2"> </i> {{trans('lang.login')}} {{trans('lang.with_phone')}}</button>
                 </form>
                 <form class="form-horizontal form-material" name="loginwithphon" id="login-with-phone-box" action="#"
                       style="display:none;">
                     @csrf
-                    <div class="box-title m-b-20">{{ __('Login') }}</div>
+                    <div class="box-title m-b-20">{{trans('lang.login')}}</div>
                     <div class="form-group " id="phone-box">
                         <div class="col-xs-12">                            
                              <select name="country" id="country_selector" class="country_code" @if(request('loginType') === 'phone') disabled @endif>
@@ -398,11 +398,11 @@ foreach ($countries as $keycountry => $valuecountry) {
                             <button type="button" style="display:none;" onclick="sendOTP()" id="sendotp_btn"
                                     class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light btn btn-primary">{{trans('lang.otp_send')}}</button>
                             <div class="or-line mb-3 mt-3">
-                                <span>OR</span>
+                                <span>O</span>
                             </div>
                             <button type="button" onclick="loginBackClick()"
                                     class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light btn btn-primary">
-                                <i class="fa fa-envelope mr-2"> </i> {{ __('Login') }} {{trans('lang.with_email')}}
+                                <i class="fa fa-envelope mr-2"> </i> {{trans('lang.login')}} {{trans('lang.with_email')}}
                             </button>
                             <div class="error" id="password_required_new"></div>
                         </div>

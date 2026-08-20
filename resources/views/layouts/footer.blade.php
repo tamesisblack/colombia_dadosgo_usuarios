@@ -3,6 +3,33 @@
         <img src="{{ asset('img/spinner.gif') }}">
     </div>
 </div>
+<script>
+    // Salvaguarda: si algun error de JS en otra parte de la pagina impide
+    // que se llame a jQuery("#data-table_processing").hide(), este overlay
+    // se quedaria bloqueando la pantalla para siempre. Lo forzamos a
+    // ocultarse solo despues de 10s si sigue visible.
+    (function () {
+        var overlayEl = document.getElementById('data-table_processing');
+        if (!overlayEl || typeof MutationObserver === 'undefined') return;
+        var watchdog = null;
+        var observer = new MutationObserver(function () {
+            var isVisible = overlayEl.style.display !== 'none';
+            if (isVisible) {
+                if (!watchdog) {
+                    watchdog = setTimeout(function () {
+                        console.warn('DadosGo: el overlay de carga se quedo bloqueado, se oculta automaticamente.');
+                        overlayEl.style.display = 'none';
+                        watchdog = null;
+                    }, 10000);
+                }
+            } else if (watchdog) {
+                clearTimeout(watchdog);
+                watchdog = null;
+            }
+        });
+        observer.observe(overlayEl, { attributes: true, attributeFilter: ['style'] });
+    })();
+</script>
 <button type="button" id="locationModal" data-toggle="modal" data-target="#locationModalAddress" hidden>{{trans('lang.submit')}}</button>
 <div class="modal fade" id="locationModalAddress" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered location_modal">
@@ -16,17 +43,17 @@
                         <div class="col-md-12 form-group">
                             <label class="form-label">{{ trans('lang.street_1') }}</label>
                             <div class="input-group">
-                                <input placeholder="Delivery Area" type="text" id="address_line1" class="form-control">
+                                <input placeholder="Zona de entrega" type="text" id="address_line1" class="form-control">
                                 <div class="input-group-append">
                                     <button onclick="getCurrentLocationAddress1()" type="button" class="btn btn-outline-secondary"><i class="feather-map-pin"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.landmark') }}</label><input placeholder="{{ trans('lang.footer') }}" value="" id="address_line2" type="text" class="form-control"></div>
-                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.zip_code') }}</label><input placeholder="Zip Code" id="address_zipcode" type="text" class="form-control">
+                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.zip_code') }}</label><input placeholder="Código postal" id="address_zipcode" type="text" class="form-control">
                         </div>
                         <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.city') }}</label><input placeholder="{{ trans('lang.city') }}" id="address_city" type="text" class="form-control"></div>
-                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.country') }}</label><input placeholder="Country" id="address_country" type="text" class="form-control">
+                        <div class="col-md-12 form-group"><label class="form-label">{{ trans('lang.country') }}</label><input placeholder="País" id="address_country" type="text" class="form-control">
                         </div>
                         <input type="hidden" name="address_lat" id="address_lat">
                         <input type="hidden" name="address_lng" id="address_lng">

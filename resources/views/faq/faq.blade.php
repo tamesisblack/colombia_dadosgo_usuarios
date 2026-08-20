@@ -48,7 +48,7 @@ Jawaddi Ludhiana...
 <div class="input-group-prepend">
 <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i class="feather-search"></i></button>
 </div>
-<input type="text" class="shadow-none border-0 form-control" placeholder="Enter Your Location">
+<input type="text" class="shadow-none border-0 form-control" placeholder="Ingresa tu ubicación">
 </div>
 </div>
 <div class="p-3 border-bottom">
@@ -542,15 +542,15 @@ Jawaddi Ludhiana...
 <ul class="list-unstyled hov_footer">
 <li> <a href="#" class="text-muted">India</a></li>
 <li> <a href="#" class="text-muted">Indonesia</a></li>
-<li> <a href="#" class="text-muted">Ireland</a></li>
-<li> <a href="#" class="text-muted">Italy</a></li>
+<li> <a href="#" class="text-muted">Irlanda</a></li>
+<li> <a href="#" class="text-muted">Italia</a></li>
 <li> <a href="#" class="text-muted">Lebanon</a></li>
 </ul>
 </aside>
 <aside class="col-sm-2 col-md-2 text-white">
 <ul class="list-unstyled hov_footer">
 <li> <a href="#" class="text-muted">Malaysia</a></li>
-<li> <a href="#" class="text-muted">New Zealand</a></li>
+<li> <a href="#" class="text-muted">Nueva Zelanda</a></li>
 <li> <a href="#" class="text-muted">Philippines</a></li>
 <li> <a href="#" class="text-muted">Poland</a></li>
 <li> <a href="#" class="text-muted">Portugal</a></li>
@@ -562,15 +562,15 @@ Jawaddi Ludhiana...
  <li> <a href="#" class="text-muted">Brasil</a></li>
 <li> <a href="#" class="text-muted">Canada</a></li>
 <li> <a href="#" class="text-muted">Chile</a></li>
-<li> <a href="#" class="text-muted">Czech Republic</a></li>
+<li> <a href="#" class="text-muted">República Checa</a></li>
 </ul>
 </aside>
 <aside class="col-sm-2 col-md-2 text-white">
 <ul class="list-unstyled hov_footer">
 <li> <a href="#" class="text-muted">Turkey</a></li>
 <li> <a href="#" class="text-muted">UAE</a></li>
-<li> <a href="#" class="text-muted">United Kingdom</a></li>
-<li> <a href="#" class="text-muted">United States</a></li>
+<li> <a href="#" class="text-muted">Reino Unido</a></li>
+<li> <a href="#" class="text-muted">Estados Unidos</a></li>
 <li> <a href="#" class="text-muted">Sri Lanka</a></li>
 </ul>
 </aside>
@@ -579,8 +579,8 @@ Jawaddi Ludhiana...
 <li> <a href="#" class="text-muted">Qatar</a></li>
 <li> <a href="#" class="text-muted">Singapore</a></li>
 <li> <a href="#" class="text-muted">Slovakia</a></li>
-<li> <a href="#" class="text-muted">South Africa</a></li>
-<li> <a href="#" class="text-muted">Green Land</a></li>
+<li> <a href="#" class="text-muted">Sudáfrica</a></li>
+<li> <a href="#" class="text-muted">Groenlandia</a></li>
 </ul>
 </aside>
 <aside class="col-sm-2 col-md-2 text-white">
@@ -721,13 +721,13 @@ You can add any custom content to your navigation items. This text is just an ex
 <div class="col-md-12 form-group">
 <label class="form-label font-weight-bold small">{{trans('lang.card_number')}}</label>
 <div class="input-group">
-<input placeholder="Card number" type="number" class="form-control">
+<input placeholder="Número de tarjeta" type="number" class="form-control">
 <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><i class="feather-credit-card"></i></button></div>
 </div>
 </div>
-<div class="col-md-8 form-group"><label class="form-label font-weight-bold small">{{trans('lang.valid_through_mm_yy')}}</label><input placeholder="Enter Valid through(MM/YY)" type="number" class="form-control"></div>
-<div class="col-md-4 form-group"><label class="form-label font-weight-bold small">{{trans('lang.cvv')}}</label><input placeholder="Enter CVV Number" type="number" class="form-control"></div>
-<div class="col-md-12 form-group"><label class="form-label font-weight-bold small">{{trans('lang.name_on_card')}}</label><input placeholder="Enter Card number" type="text" class="form-control"></div>
+<div class="col-md-8 form-group"><label class="form-label font-weight-bold small">{{trans('lang.valid_through_mm_yy')}}</label><input placeholder="Vigencia (MM/AA)" type="number" class="form-control"></div>
+<div class="col-md-4 form-group"><label class="form-label font-weight-bold small">{{trans('lang.cvv')}}</label><input placeholder="Número CVV" type="number" class="form-control"></div>
+<div class="col-md-12 form-group"><label class="form-label font-weight-bold small">{{trans('lang.name_on_card')}}</label><input placeholder="Número de tarjeta" type="text" class="form-control"></div>
 <div class="col-md-12 form-group mb-0">
 <div class="custom-control custom-checkbox"><input type="checkbox" id="custom-checkbox1" class="custom-control-input"><label title="" type="checkbox" for="custom-checkbox1" class="custom-control-label small pt-1">Securely save this card for a faster checkout next time.</label></div>
 </div>
@@ -760,7 +760,7 @@ You can add any custom content to your navigation items. This text is just an ex
 <div class="col-md-12 form-group">
 <label class="form-label">{{trans('lang.delivery_area')}}</label>
 <div class="input-group">
-<input placeholder="Delivery Area" type="text" class="form-control">
+<input placeholder="Zona de entrega" type="text" class="form-control">
 <div class="input-group-append"><button type="button" class="btn btn-outline-secondary"><i class="feather-map-pin"></i></button></div>
 </div>
 </div>
@@ -806,8 +806,8 @@ You can add any custom content to your navigation items. This text is just an ex
 </div>
 <div class="modal-body py-0">
 <button class="btn btn-light text-primary btn-sm"><i class="feather-plus"></i></button>
-<span class="ml-2 smal text-primary">Send an invite to a friend</span>
-<p class="mt-3 small">Invited friends (2)</p>
+<span class="ml-2 smal text-primary">Envía una invitación a un amigo</span>
+<p class="mt-3 small">Amigos invitados (2)</p>
 <div class="d-flex align-items-center mb-3">
 <div class="mr-3"><img alt="#" src="img/user1.jpg" class="img-fluid rounded-circle"></div>
 <div>

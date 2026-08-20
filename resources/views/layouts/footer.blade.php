@@ -850,6 +850,7 @@
                     type: 'POST',
                     data: {
                         serviceJson: btoa(serviceJson),
+                        _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     url: "/store-firebase-service",
                     headers: {

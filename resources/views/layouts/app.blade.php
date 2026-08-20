@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="<?php echo @$_COOKIE['application_name']; ?>">
 <meta name="author" content="<?php echo @$_COOKIE['application_name']; ?>">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="icon" id="favicon" type="image/png" href="{{ asset('img/favicon.png') }}">
 <title><?php echo @$_COOKIE['meta_title']; ?></title>
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/slick/slick.min.css')}}"/>

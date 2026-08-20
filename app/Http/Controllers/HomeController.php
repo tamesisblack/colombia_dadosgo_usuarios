@@ -14,11 +14,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        
         $route = \Route::currentRouteName();
-        if(!isset($_COOKIE['address_name']) && $route != "set-location"){
-    		\Redirect::to('set-location')->send();
-      	}
+        $skipLocation = in_array($route, ['set-location', 'store-firebase-service'], true);
+        if (!isset($_COOKIE['address_name']) && !$skipLocation) {
+            \Redirect::to('set-location')->send();
+        }
     }
 
     /**
@@ -34,9 +34,35 @@ class HomeController extends Controller
     {
     	return view('layer');
     }
-    public function storeFirebaseService(Request $request){
-		if(!empty($request->serviceJson) && !Storage::disk('local')->has('firebase/credentials.json')){
-			Storage::disk('local')->put('firebase/credentials.json',file_get_contents(base64_decode($request->serviceJson)));
-		}
-	}
+    public function storeFirebaseService(Request $request)
+    {
+        try {
+            if (empty($request->serviceJson)) {
+                return response()->json(['ok' => true]);
+            }
+
+            if (Storage::disk('local')->exists('firebase/credentials.json')) {
+                return response()->json(['ok' => true]);
+            }
+
+            $decoded = base64_decode($request->serviceJson, true);
+            if ($decoded === false || $decoded === '') {
+                return response()->json(['ok' => false], 400);
+            }
+
+            $content = $decoded;
+            if (filter_var($decoded, FILTER_VALIDATE_URL)) {
+                $fetched = @file_get_contents($decoded);
+                if ($fetched !== false) {
+                    $content = $fetched;
+                }
+            }
+
+            Storage::disk('local')->put('firebase/credentials.json', $content);
+
+            return response()->json(['ok' => true]);
+        } catch (\Throwable $e) {
+            return response()->json(['ok' => false], 200);
+        }
+    }
 }

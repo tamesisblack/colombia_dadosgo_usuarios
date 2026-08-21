@@ -122,7 +122,7 @@ return [
     'login_error_deactivate' => "Sorry your account is inactive and may not login.",
     'login_error_notfound' => "Sorry your account is not found in customers.",
     'Processing' => 'Processing...',
-    'foodie_online_food_os' => 'Foodie - Online Food Ordering System',
+    'foodie_online_food_os' => 'DadosGo - Online Food Ordering System',
     'login' => "Login",
     'sign_in_to_continue' => "Sign in to continue",
     'log_in' => "LOG IN",

@@ -210,7 +210,7 @@
                                     <p class="font-weight-bold small mb-1">
                                         {{ trans('lang.courier') }}
                                     </p>
-                                    <img alt="#" src="img/logo_web.png" class="img-fluid sc-siddhi-logo mr-2"><span class="small text-primary font-weight-bold">{{ trans('lang.grocery_courier') }}
+                                    <img alt="#" src="https://dadosgo.com/img/logo_header.png" class="img-fluid sc-siddhi-logo mr-2"><span class="small text-primary font-weight-bold">{{ trans('lang.grocery_courier') }}
                                     </span>
                                 </div>
                             </div>

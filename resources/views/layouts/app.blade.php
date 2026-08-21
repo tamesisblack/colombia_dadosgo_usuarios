@@ -25,7 +25,7 @@
     <link href="{{asset('vendor/sidebar/demo.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script type="text/javascript">
-        var section_colorman = '<?php echo @$_COOKIE['section_color']; ?>';
+        var section_colorman = '<?php echo @$_COOKIE['section_color'] ?: '#E63946'; ?>';
         var application_name = '<?php echo @$_COOKIE['application_name']; ?>';
         var meta_title = '<?php echo @$_COOKIE['meta_title']; ?>';
     </script>

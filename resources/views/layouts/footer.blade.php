@@ -1821,41 +1821,55 @@
 </script>
 <?php } ?>
 
-<?php if (isset($_COOKIE['section_color'])) { ?>
+<?php
+$brandColor = (!empty($_COOKIE['section_color'])) ? $_COOKIE['section_color'] : '#E63946';
+?>
 <style type="text/css">
+    .section-footer,
+    .section-footer .border-top,
+    .footer-copyright,
+    .footer-copyright.bg-light {
+        background: <?php echo $brandColor; ?> !important;
+    }
+
+    .section-footer .footer-top:after {
+        background: transparent !important;
+        content: none !important;
+    }
+
     a,
     .list-card a:hover,
     a:hover {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .hc-offcanvas-nav h2,
     .hc-offcanvas-nav:not(.touch-device) li:not(.custom-content) a:hover,
     .cat-item a.cat-link:hover {
         background-color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .homebanner-content .ban-btn a,
     .open-ticket-btn a,
     .select-sec-btn a {
         background-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .homebanner-content .ban-btn a:hover,
     .open-ticket-btn a:hover,
     .select-sec-btn a:hover {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .header-main .takeaway-div input[type="checkbox"]::before {
         background-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         opacity: 0.6;
     }
 
@@ -1867,24 +1881,24 @@
     .rest-basic-detail .feather_icon .fu-status a.rest-right-btn>span.open,
     .header-main .takeaway-div input[type="checkbox"]:checked::before {
         background-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .offer_coupon_code .offer_code p.badge,
     .offer_coupon_code .offer_price {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .cat-item a.cat-link:hover i.fa {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .rest-basic-detail .feather_icon a.rest-right-btn,
     .rest-basic-detail .feather_icon a.btn {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .rest-basic-detail .feather_icon a.rest-right-btn .feather-star,
@@ -1892,28 +1906,28 @@
     .rest-basic-detail .feather_icon a.rest-right-btn:hover,
     ul.rating {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .vendor-detail-left h4.h6::after,
     .sidebar-header h3.h6::after {
         background-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .gold-members .add-btn .menu-itembtn a.btn {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .btn-primary,
     .transactions-list .media-body .app-off-btn a {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .btn-primary:hover,
@@ -1925,9 +1939,9 @@
     .custom-control-input:checked~.custom-control-label::before,
     .row.fu-loadmore-btn .page-link {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .count-number-box .count-number .count-number-input,
@@ -1936,33 +1950,33 @@
     .count-number button.btn-sm.btn:hover,
     .btn-link {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .transactions-banner {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .transactions-list .media-body .app-off-btn a:hover,
     .rating-stars .feather-star.star_active,
     .rating-stars .feather-star.text-warning {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .search .nav-tabs .nav-item.show .nav-link,
     .search .nav-tabs .nav-link.active {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
         background-color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .text-primary,
     .card-icon>span {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .checkout-left-box.siddhi-cart-item::after,
@@ -1972,65 +1986,65 @@
     .restaurant-detail-left h4.h6::after,
     .sidebar-header h3.h6::after {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .page-link,
     .rest-basic-detail .feather_icon a.rest-right-btn {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .page-link:hover {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .btn-outline-primary {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .btn-outline-primary:hover {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .gendetail-row h3 {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .dyn-menulist button.view_all_menu_btn {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .daytab-cousines ul li>span {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .daytab-cousines ul li>span:hover {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .feather-star.text-warning,
     .list-card .offer_coupon_code .star .badge .feather-star.star_active,
     .list-card-body .offer-btm .star .badge .feather-star.star_active {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     a.restaurant_direction img {
@@ -2040,82 +2054,82 @@
 
     .modal-body .recepie-body .custom-control .custom-control-label>span.text-muted {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .payment-table tr th {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .slick-dots li.slick-active button::before {
         color:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
         background:
-            <?php echo $_COOKIE['section_color']; ?> !important;
+            <?php echo $brandColor; ?> !important;
     }
 
     .footer-top .title::after,
     .product-list .list-card .list-card-image .discount-price {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .ft-contact-box .ft-icon {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .head-search .dropdown {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .list-card .list-card-body .offer-code a {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .vandor-sidebar .vandorcat-list li a:hover,
     .vandor-sidebar .vandorcat-list li.active a {
         border-color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .list-card .list-card-body p.text-gray span.fa.fa-map-marker,
     .car-det-head .car-det-price span.price {
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .product-detail-page .addons-option .custom-control .custom-control-label.active::before {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .product-detail-page .addtocart .add-to-cart.btn.btn-primary.booknow {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     .product-detail-page .addtocart .add-to-cart.btn.btn-primary {
-        border: 1px solid<?php echo $_COOKIE['section_color']; ?>;
+        border: 1px solid<?php echo $brandColor; ?>;
         color:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 
     @media (max-width: 991px) {
         .bg-primary {
             background:
-                <?php echo $_COOKIE['section_color']; ?> !important;
+                <?php echo $brandColor; ?> !important;
         }
     }
 
     .swal2-actions .swal2-confirm.swal2-styled {
         background:
-            <?php echo $_COOKIE['section_color']; ?>;
+            <?php echo $brandColor; ?>;
     }
 </style>
-<?php } ?>
+

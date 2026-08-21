@@ -122,7 +122,7 @@ return [
     'login_error_deactivate' => 'Lo sentimos, su cuenta está inactiva y no puede iniciar sesión.',
     'login_error_notfound' => 'Lo sentimos, tu cuenta no se encuentra en clientes.',
     'Processing' => 'Procesando',
-    'foodie_online_food_os' => 'Foodie - Sistema de pedidos de alimentos en línea',
+    'foodie_online_food_os' => 'DadosGo - Sistema de pedidos de alimentos en línea',
     'login' => 'Iniciar sesión',
     'sign_in_to_continue' => 'Inicia sesión para continuar',
     'log_in' => 'ACCESO',

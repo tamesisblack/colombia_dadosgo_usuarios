@@ -191,7 +191,7 @@ $( document ).ready(function() {
         disableAt: false,
         customToggle: $toggle,
         levelSpacing: 40,
-        navTitle: 'Foodie',
+        navTitle: 'DadosGo',
         levelTitles: true,
         levelTitleAsBack: true,
         pushContent: '#container',

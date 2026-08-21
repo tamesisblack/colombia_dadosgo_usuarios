@@ -56,7 +56,7 @@
             <div class="row align-items-center">
                 <div class="col-2">
                     <a href="{{url('/')}}" class="brand-wrap mb-0">
-                        <img alt="#" class="img-fluid" src="{{asset('img/logo_web.png')}}" id="logo_web">
+                        <img alt="#" class="img-fluid" src="https://dadosgo.com/img/logo_header.png" id="logo_web" style="max-height:52px;width:auto;">
                     </a>
                 </div>
                 <div class="col-3 d-flex align-items-center m-none head-search">
@@ -174,7 +174,7 @@
     <div class="d-flex align-items-center">
         <a class="toggle togglew toggle-2" href="#"><span></span></a>
         <a href="{{url('/')}}" class="mobile-logo brand-wrap mb-0">
-            <img alt="#" class="img-fluid" src="{{asset('img/logo_web.png')}}">
+            <img alt="#" class="img-fluid" src="https://dadosgo.com/img/logo_header.png" style="max-height:44px;width:auto;">
         </a>
      </div>
 

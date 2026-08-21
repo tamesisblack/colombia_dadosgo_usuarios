@@ -28,7 +28,7 @@
 <div class="row align-items-center">
 <div class="col-1">
 <a href="home.html" class="brand-wrap mb-0">
-<img alt="#" class="img-fluid" src="img/logo_web.png">
+<img alt="#" class="img-fluid" src="https://dadosgo.com/img/logo_header.png" style="max-height:52px;width:auto;">
 </a>
 
 </div>
@@ -483,7 +483,7 @@ Jawaddi Ludhiana...
 <div class="row pt-3">
 <aside class="col-md-4 footer-about">
 <article class="d-flex pb-3">
-<div><img alt="#" src="img/logo_web.png" class="logo-footer mr-3"></div>
+<div><img alt="#" src="https://dadosgo.com/img/logo_header.png" class="logo-footer mr-3" style="max-height:52px;width:auto;"></div>
 <div>
 <h6 class="title text-white">{{trans('lang.about_us')}}</h6>
 <p class="text-muted">{{trans('lang.short_text_about_company')}}</p>
